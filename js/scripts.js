@@ -13,9 +13,11 @@ function Board(sq1, sq2, sq3, sq4, sq5, sq6, sq7, sq8, sq9){
   this.sq9 = sq9;
 }
 
-var newBoard = new Board([1, 1], [1, 2], [3, 3], [2, 1], [2, 2], [2, 3], [3, 1], [3, 2], [3,3]);
+var newBoard = new Board("box1", "box2", "box3", "box4", "box5", "box6", "box7", "box8", "box9");
 
 var winningCombos = [[newBoard.sq1, newBoard.sq2, newBoard.sq3], [newBoard.sq4, newBoard.sq5, newBoard.sq6], [newBoard.sq7, newBoard.sq8, newBoard.sq9], [newBoard.sq1, newBoard.sq4, newBoard.sq7], [newBoard.sq2, newBoard.sq5, newBoard.sq8], [newBoard.sq3, newBoard.sq6, newBoard.sq9],[newBoard.sq1, newBoard.sq5, newBoard.sq9], [newBoard.sq7, newBoard.sq5, newBoard.sq3]];
+
+var winner1 = [newBoard.sq1, newBoard.sq2, newBoard.sq3];
 
 
 var playerOnePicks = [];
@@ -27,7 +29,7 @@ var currentPick;
 
 
 function alternatePlayer() {
-  checkWinners();
+  // checkWinners();
   if (turnCounter % 2 === 0){
     currentPick = playerOne;
     turnCounter += 1;
@@ -41,22 +43,15 @@ function alternatePlayer() {
 }
 
 
-
-
-
-function checkWinners(){
-
-
-
- if (20 < 1000){      //// Fix this conditon
-   alert("You win!!!");
-   playerOnePicks = [];
-   playerTwoPicks =[];
-   turnCounter = 0;
- }
-}
-
-
+// function checkWinners(){
+//   for (let i in winningCombos){
+//     for (let j in playerOnePicks){
+//       if (winningCombos[i][0] === playerOnePicks[0] && winningCombos[i][1] === playerOnePicks[1] && winningCombos[i][2] === playerOnePicks[2]){
+//   	    alert("you winner");
+//       }
+//     }
+//   }
+// }
 
 
 $(document).ready(function() {
