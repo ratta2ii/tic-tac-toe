@@ -13,23 +13,16 @@ function Board(sq1, sq2, sq3, sq4, sq5, sq6, sq7, sq8, sq9){
   this.sq9 = sq9;
 }
 
-var newBoard = new Board("box1", "box2", "box3", "box4", "box5", "box6", "box7", "box8", "box9");
+var newBoard = new Board("1", "2", "3", "4", "5", "6", "7", "8", "9");
 
-var winningCombos = [[newBoard.sq1, newBoard.sq2, newBoard.sq3], [newBoard.sq4, newBoard.sq5, newBoard.sq6], [newBoard.sq7, newBoard.sq8, newBoard.sq9], [newBoard.sq1, newBoard.sq4, newBoard.sq7], [newBoard.sq2, newBoard.sq5, newBoard.sq8], [newBoard.sq3, newBoard.sq6, newBoard.sq9],[newBoard.sq1, newBoard.sq5, newBoard.sq9], [newBoard.sq7, newBoard.sq5, newBoard.sq3]];
-
-var winner1 = [newBoard.sq1, newBoard.sq2, newBoard.sq3];
-
+var winningCombos = [["1", "2", "3"], ["4", "5", "6"], ["7", "8", "9"], ["1", "4","7"], ["2", "5", "8"], ["3", "6", "9"],["1", "5", "9"], ["3", "5", "7"]];
 
 var playerOnePicks = [];
-
 var playerTwoPicks = [];
-
 var turnCounter = 0;
 var currentPick;
 
-
 function alternatePlayer() {
-  // checkWinners();
   if (turnCounter % 2 === 0){
     currentPick = playerOne;
     turnCounter += 1;
@@ -42,20 +35,34 @@ function alternatePlayer() {
   }
 }
 
+var checkWinners = function(){
+  playerOnePicks.sort();
+  playerTwoPicks.sort();
+  for (let i in winningCombos){
+    if (playerOnePicks.includes(winningCombos[i][0]) && playerOnePicks.includes(winningCombos[i][1]) && playerOnePicks.includes(winningCombos[i][2])){
+	    alert("Player One Wins!!!");
+      resetPage();
+    }
+    if (playerTwoPicks.includes(winningCombos[i][0]) && playerTwoPicks.includes(winningCombos[i][1]) && playerTwoPicks.includes(winningCombos[i][2])){
+      alert("Player Two Wins!!!");
+      resetPage();
+    }
+  }
+}
 
-// function checkWinners(){
-//   for (let i in winningCombos){
-//     for (let j in playerOnePicks){
-//       if (winningCombos[i][0] === playerOnePicks[0] && winningCombos[i][1] === playerOnePicks[1] && winningCombos[i][2] === playerOnePicks[2]){
-//   	    alert("you winner");
-//       }
-//     }
-//   }
-// }
+window.setInterval(checkWinners, 0);
+
+function resetPage(){
+  playerOnePicks = [];
+  playerTwoPicks = [];
+  turnCounter = 0;
+}
+
+
+// UI Logic ---------------------------------------
 
 
 $(document).ready(function() {
-
 
   $("#box-one").click(function(){
     if ($(".box-one-text").html() !== ""){
@@ -64,16 +71,14 @@ $(document).ready(function() {
     }
     else {
       $(".box-one-text").empty().append(alternatePlayer());
-
       if (currentPick == playerOne){
-        return playerOnePicks.push(newBoard.sq1);
+        playerOnePicks.push(newBoard.sq1);
       }
       else if (currentPick == playerTwo){
-        return playerTwoPicks.push(newBoard.sq1);
+        playerTwoPicks.push(newBoard.sq1);
       }
     }
   });
-
 
   $("#box-two").click(function(){
     if ($(".box-two-text").html() !== ""){
@@ -83,14 +88,13 @@ $(document).ready(function() {
     else {
       $(".box-two-text").empty().append(alternatePlayer());
       if (currentPick == playerOne){
-        return playerOnePicks.push(newBoard.sq2);
+        playerOnePicks.push(newBoard.sq2);
       }
       else if (currentPick == playerTwo){
-        return playerTwoPicks.push(newBoard.sq2);
+        playerTwoPicks.push(newBoard.sq2);
       }
     }
   });
-
 
   $("#box-three").click(function(){
     if ($(".box-three-text").html() !== ""){
@@ -100,14 +104,13 @@ $(document).ready(function() {
     else {
       $(".box-three-text").empty().append(alternatePlayer());
       if (currentPick == playerOne){
-        return playerOnePicks.push(newBoard.sq3);
+        playerOnePicks.push(newBoard.sq3);
       }
       else if (currentPick == playerTwo){
-        return playerTwoPicks.push(newBoard.sq3);
+        playerTwoPicks.push(newBoard.sq3);
       }
     }
   });
-
 
   $("#box-four").click(function(){
     if ($(".box-four-text").html() !== ""){
@@ -117,14 +120,13 @@ $(document).ready(function() {
     else {
       $(".box-four-text").empty().append(alternatePlayer());
       if (currentPick == playerOne){
-        return playerOnePicks.push(newBoard.sq4);
+        playerOnePicks.push(newBoard.sq4);
       }
       else if (currentPick == playerTwo){
-        return playerTwoPicks.push(newBoard.sq4);
+        playerTwoPicks.push(newBoard.sq4);
       }
     }
   });
-
 
   $("#box-five").click(function(){
     if ($(".box-five-text").html() !== ""){
@@ -134,14 +136,13 @@ $(document).ready(function() {
     else {
       $(".box-five-text").empty().append(alternatePlayer());
       if (currentPick == playerOne){
-        return playerOnePicks.push(newBoard.sq5);
+        playerOnePicks.push(newBoard.sq5);
       }
       else if (currentPick == playerTwo){
-        return playerTwoPicks.push(newBoard.sq5);
+        playerTwoPicks.push(newBoard.sq5);
       }
     }
   });
-
 
   $("#box-six").click(function(){
     if ($(".box-six-text").html() !== ""){
@@ -151,14 +152,13 @@ $(document).ready(function() {
     else {
       $(".box-six-text").empty().append(alternatePlayer());
       if (currentPick == playerOne){
-        return playerOnePicks.push(newBoard.sq6);
+        playerOnePicks.push(newBoard.sq6);
       }
       else if (currentPick == playerTwo){
-        return playerTwoPicks.push(newBoard.sq6);
+        playerTwoPicks.push(newBoard.sq6);
       }
     }
   });
-
 
   $("#box-seven").click(function(){
     if ($(".box-seven-text").html() !== ""){
@@ -168,14 +168,13 @@ $(document).ready(function() {
     else {
       $(".box-seven-text").empty().append(alternatePlayer());
       if (currentPick == playerOne){
-        return playerOnePicks.push(newBoard.sq7);
+        playerOnePicks.push(newBoard.sq7);
       }
       else if (currentPick == playerTwo){
-        return playerTwoPicks.push(newBoard.sq7);
+        playerTwoPicks.push(newBoard.sq7);
       }
     }
   });
-
 
   $("#box-eight").click(function(){
     if ($(".box-eight-text").html() !== ""){
@@ -185,14 +184,13 @@ $(document).ready(function() {
     else {
       $(".box-eight-text").empty().append(alternatePlayer());
       if (currentPick == playerOne){
-        return playerOnePicks.push(newBoard.sq8);
+        playerOnePicks.push(newBoard.sq8);
       }
       else if (currentPick == playerTwo){
-        return playerTwoPicks.push(newBoard.sq8);
+        playerTwoPicks.push(newBoard.sq8);
       }
     }
   });
-
 
   $("#box-nine").click(function(){
     if ($(".box-nine-text").html() !== ""){
@@ -202,12 +200,17 @@ $(document).ready(function() {
     else {
       $(".box-nine-text").empty().append(alternatePlayer());
       if (currentPick == playerOne){
-        return playerOnePicks.push(newBoard.sq9);
+        playerOnePicks.push(newBoard.sq9);
       }
       else if (currentPick == playerTwo){
-        return playerTwoPicks.push(newBoard.sq9);
+        playerTwoPicks.push(newBoard.sq9);
       }
     }
-
   });
+
+  $("button#play-again-btn").click(function() {
+    $("h1").text("");
+    resetPage();
+  });
+  
 });

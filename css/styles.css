@@ -1,9 +1,19 @@
 .board-container {
   width: 60%;
   background-color: cornflowerblue;
+  margin: 100px auto;
 }
 
 .col-md-4 {
   border: 3px solid black;
   height: 200px;
+}
+
+button#play-again-btn {
+  margin-left: 500px;
+}
+
+h1 {
+  margin-left: 40%;
+  margin-top: 40%;
 }
